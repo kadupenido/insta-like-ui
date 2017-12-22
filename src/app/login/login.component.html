@@ -5,18 +5,13 @@
         <h3 class="panel-title">Entrar</h3>
       </div>
       <div class="panel-body">
-        <form accept-charset="UTF-8" role="form">
+        <form accept-charset="UTF-8" role="form" [formGroup]="formLogin" (ngSubmit)="login(formLogin.value)">
           <fieldset>
             <div class="form-group">
-              <input class="form-control" placeholder="usuário" name="email" type="text">
+              <input class="form-control" placeholder="usuário" name="email" type="text" formControlName="userName">
             </div>
             <div class="form-group">
-              <input class="form-control" placeholder="senha" name="password" type="password" value="">
-            </div>
-            <div class="checkbox">
-              <label>
-                <input name="remember" type="checkbox" value="Remember Me"> Lembrar
-              </label>
+              <input class="form-control" placeholder="senha" name="password" type="password" value="" formControlName="password">
             </div>
             <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
           </fieldset>
