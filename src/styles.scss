@@ -1,2 +1,11 @@
 @import 'variables';
 @import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
+
+
+body {
+    padding-top: 55px;
+}
+
+.content {
+    text-align: left;
+}

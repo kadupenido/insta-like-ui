@@ -1,0 +1,16 @@
+<div class="page-header">
+  <div class="row">
+    <div class="col-md-2">
+      <img *ngIf="me.profilePicUrl" src="{{me.profilePicUrl}}" alt="thumb">
+    </div>
+    <div class="col-md-10">
+      <h1>{{ me.fullName }}</h1>
+      <p class="line-breaker">
+        {{ me.biography }}
+      </p>
+      <p>
+        <a [href]="me.externalUrl"> {{ me.externalUrl }}</a>
+      </p>
+    </div>
+  </div>
+</div>
