@@ -12,7 +12,7 @@ export class AuthService {
 
   authenticate(user, password) {
 
-    const url = `${this.baseUrl}/authe5nticate/`;
+    const url = `${this.baseUrl}/authenticate/`;
 
     const body = { user: user, password: password };
 
