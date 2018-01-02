@@ -13,7 +13,15 @@
             <div class="form-group">
               <input class="form-control" placeholder="senha" name="password" type="password" value="" formControlName="password">
             </div>
+            <div class="form-group">
+              <div class="alert alert-danger" role="alert" *ngIf="exibirErro">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{msgErro}}
+              </div>
+            </div>
             <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+
           </fieldset>
         </form>
       </div>

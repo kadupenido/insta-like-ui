@@ -14,7 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         request = request.clone({
             setHeaders: {
-                'x-access-token': 'a'
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('iL')).token
             }
         });
 

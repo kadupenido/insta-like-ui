@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, transition } from '@angular/core';
 
 import { environment } from './../../environments/environment';
 
@@ -16,22 +16,37 @@ export class AuthService {
 
     const body = { user: user, password: password };
 
-    return this.http.post(url, body).toPromise().then((token) => {
+    return this.http.post(url, body).toPromise().then((res: any) => {
 
-      console.log(token);
+      localStorage.setItem('iL', JSON.stringify({ token: res.token, exp: res.exp }));
+
       return {
         success: true
       };
 
     }, (err) => {
-      return {
-        success: false
-      };
+      return err.error;
     });
   }
 
-  getToken(): string {
-    return 'eyJhbGciOiJIUzI1NiJ9.a2FkdXBlbmlkbw.xGjzd3XQMkPZx5TY6uknWf4au2Z9sJB2KnHNl6aTUkk';
+  isLoggedIn() {
+
+    const token = this.getToken();
+
+    if (!token || token.exp < new Date()) {
+      this.destroyToken();
+      return false;
+    }
+
+    return true;
+  }
+
+  private getToken(): any {
+    return JSON.parse(localStorage.getItem('iL'));
+  }
+
+  private destroyToken(): any {
+    return localStorage.removeItem('iL');
   }
 
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,8 +12,10 @@ import { FormGroup } from '@angular/forms/src/model';
 export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
+  exibirErro: Boolean = false;
+  msgErro: String;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
 
@@ -25,7 +28,12 @@ export class LoginComponent implements OnInit {
 
   login(form) {
     this.authService.authenticate(form.userName, form.password).then((res) => {
-      console.log(res);
+      if (res.success) {
+        this.router.navigate(['/']);
+      } else {
+        this.exibirErro = true;
+        this.msgErro = res.message.message;
+      }
     });
   }
 
